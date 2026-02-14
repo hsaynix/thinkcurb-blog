@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* تعريف المتغيرات والخطوط في طبقة الأساس */
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --google-blue: #1a73e8;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    /* استخدام المتغير القادم من Next.js Font مباشرة */
+    font-family: var(--font-google-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.02em;
+  }
+
+  /* تعريف خط العناوين بدون @apply لتجنب أخطاء البناء */
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-playfair), serif;
+  }
+}
+
+@layer components {
+  .container-custom {
+    max-width: 80rem; /* 1280px */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* بطاقة جوجل المعدلة يدويًا لتجنب أخطاء @apply */
+  .google-card {
+    background-color: white;
+    border: 1px solid #f1f5f9; /* slate-100 */
+    border-radius: 2rem;
+    padding: 2rem;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .google-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+    transform: translateY(-4px);
+    border-color: #dbeafe; /* blue-100 */
+  }
+
+  .btn-google {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    background-color: #0f172a; /* slate-900 */
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-google:hover {
+    background-color: #2563eb; /* blue-600 */
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+  }
+}
+
+@layer utilities {
+  @keyframes entry {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-entry {
+    animation: entry 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
